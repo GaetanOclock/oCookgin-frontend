@@ -1,0 +1,15 @@
+.alert {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  
+    &.error {
+      background-color: $errorColor;
+      color: white;
+    }
+  
+    &.success {
+      background-color: $primaryStrongColor;
+      color: white;
+    }
+  }

@@ -1,0 +1,58 @@
+.field {
+    $self: &;
+  
+    display: flex;
+    flex: {
+      direction: column;
+      wrap: wrap;
+    }
+  
+    > * {
+      width: 100%;
+    }
+  
+    &__label {
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+  
+    &__input {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: $primaryBackgroundColor;
+      margin-bottom: 1rem;
+      font-family: "Montserrat", Arial;
+    }
+  
+    &__input:focus {
+      outline-color: $primaryStrongColor;
+      outline-width: 1px;
+    }
+  
+    &--error {
+      #{$self}__label {
+        color: $errorColor;
+      }
+  
+      #{$self}__input {
+        border-color: $errorColor;
+        color: $errorColor;
+  
+        &::placeholder {
+          color: $errorColor;
+        }
+      }
+    }
+  
+    &__error-list {
+      color: $errorColor;
+      list-style: none;
+      text-align: left;
+      padding-left: 0;
+    }
+  }
+ 
+  
+
+ 
