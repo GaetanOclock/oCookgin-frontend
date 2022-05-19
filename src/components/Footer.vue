@@ -1,10 +1,10 @@
 <template>
     <footer class="footer">
         <nav class="nav">
-            <a href="javascript:void(0)">Liste des recettes</a>
-            <a href="javascript:void(0)" v-if="isUserConnected">Créer une recette</a>
-            <a href="javascript:void(0)" v-if="!isUserConnected">Inscription</a>
-            <a href="javascript:void(0)" v-if="!isUserConnected">Connexion</a>
+            <RouterLink to="/">Liste des recettes</RouterLink>
+            <RouterLink to="/create-recipe" v-if="isUserConnected">Créer une recette</RouterLink>
+            <RouterLink to="/register" v-if="!isUserConnected">Inscription</RouterLink>
+            <RouterLink to="/login" v-if="!isUserConnected">Connexion</RouterLink>
         </nav>
     </footer>
 </template>

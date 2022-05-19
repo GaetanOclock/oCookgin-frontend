@@ -3,7 +3,7 @@
     <!-- Header et Footer sont des composants de layout => ils ne changent pas lorsqu'on change de page -->
     <Header :isUserConnected="isUserLoggedIn"></Header>
     <!-- C'est la partie variable de la page => c'est qui changera quand on changera de page -->
-    <HomeView></HomeView>
+    <RouterView></RouterView>
     <Footer :isUserConnected="isUserLoggedIn"></Footer>
 </div>
 </template>
