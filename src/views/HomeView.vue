@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import RecipeList from './RecipeList.vue';
+import RecipeList from '../components/RecipeList.vue';
 
 export default {
     components: {
@@ -13,7 +13,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

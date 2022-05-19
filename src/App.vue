@@ -3,7 +3,7 @@
     <!-- Header et Footer sont des composants de layout => ils ne changent pas lorsqu'on change de page -->
     <Header :isUserConnected="isUserLoggedIn"></Header>
     <!-- C'est la partie variable de la page => c'est qui changera quand on changera de page -->
-    <Home></Home>
+    <HomeView></HomeView>
     <Footer :isUserConnected="isUserLoggedIn"></Footer>
 </div>
 </template>
@@ -12,7 +12,7 @@
     // on importe le composant Footer.vue dans une variable Footer
     import Footer from './components/Footer.vue';
     import Header from './components/Header.vue';
-    import Home from './components/Home.vue';
+    import HomeView from './views/HomeView.vue';
     import NotFound from './components/NotFound.vue';
 
     export default {
@@ -25,7 +25,7 @@
         components: {
             Footer,
             Header,
-            Home,
+            HomeView,
             NotFound
         }
     };
