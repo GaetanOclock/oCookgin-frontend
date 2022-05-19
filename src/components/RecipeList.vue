@@ -43,6 +43,7 @@ export default {
                 this.recipeList = response.data;
                 this.pageNumber = parseInt(response.headers["x-wp-totalpages"]);
                 this.currentPage = pageToLoad;
+                console.log(response.data);
             });
         },
         loadIngredients: function() {

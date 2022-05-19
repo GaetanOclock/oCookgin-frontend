@@ -8,6 +8,6 @@ export default {
         if (ingredientsFilterList != null) {
             ingredientFilterString = "&ingredient[operator]=AND&ingredient[terms]=" + ingredientsFilterList.join(',');
         }
-        return axios.get(endpoint + '?page=' + page + ingredientFilterString);
+        return axios.get(endpoint + '?_embed&page=' + page + ingredientFilterString);
     }
 }
