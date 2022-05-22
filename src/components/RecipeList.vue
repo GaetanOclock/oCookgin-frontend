@@ -6,6 +6,9 @@
                 <select v-model="selectedIngredients" @change="loadPage(currentPage)" name="ingredient-filter" id="ingredient-filter" multiple>
                     <option v-for="ingredient in ingredientList" :key="ingredient.id" :value="ingredient.id">{{ ingredient.name }}</option>
                 </select>
+                <select v-model="selectedRecipeTypes" @change="loadPage(currentPage)" name="recipe-type-filter" id="recipe-type-filter" multiple>
+                    <option v-for="recipeType in recipeTypeList" :key="recipeType.id" :value="recipeType.id">{{ recipeType.name }}</option>
+                </select>
             </div>
 
             <div class="recipe-list__pagination">
@@ -18,6 +21,7 @@
 
 <script>
 import ingredientService from '../services/ingredientService';
+import recipeTypeService from '../services/recipeTypeService';
 import recipeService from '../services/recipeService';
 import RecipeExcerpt from './RecipeExcerpt.vue';
 
@@ -27,7 +31,10 @@ export default {
             recipeList: [],
             pageNumber: 0,
             currentPage: 1,
-            selectedIngredients: []
+            selectedIngredients: [],
+            selectedRecipeTypes: [],
+            ingredientList: [],
+            recipeTypeList: []
         };
     },
     components: {
@@ -36,10 +43,11 @@ export default {
     created() {
         this.loadPage(this.currentPage);
         this.loadIngredients();
+        this.loadRecipeTypes();
     },
     methods: {
         loadPage: function(pageToLoad) {
-            recipeService.getRecipes(pageToLoad, this.selectedIngredients).then(response => {
+            recipeService.getRecipes(pageToLoad, this.selectedIngredients, this.selectedRecipeTypes).then(response => {
                 this.recipeList = response.data;
                 this.pageNumber = parseInt(response.headers["x-wp-totalpages"]);
                 this.currentPage = pageToLoad;
@@ -49,6 +57,11 @@ export default {
         loadIngredients: function() {
             ingredientService.getIngredients().then(response => {
                 this.ingredientList = response.data;
+            });
+        },
+        loadRecipeTypes: function() {
+            recipeTypeService.getRecipeTypes().then(response => {
+                this.recipeTypeList = response.data;
             });
         }
     }
