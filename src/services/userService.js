@@ -1,6 +1,7 @@
 // on gère l'utilisateur
 
 import axios from 'axios';
+import store from '../store';
 // on récupère la constant baseUrl depuis apiClientService
 import { baseUrl } from './apiClientService';
 
@@ -24,9 +25,8 @@ export default {
             // on enregistre le token dans le localStorage
             // si on utilise sessionStorage, le token est supprimé lorsqu'on ferme le navigateur
             localStorage.setItem('token', response.data.data.token);
-
-            const userStatusChangedEvent = new Event('userStatusChanged');
-            document.dispatchEvent(userStatusChangedEvent);
+            store.commit('updateConnectionStatus', true);
+            console.log(store.state.isUserConnected);
         })
         .catch((error) => {
             console.log(error);
@@ -47,11 +47,7 @@ export default {
         //    avec le deuxième on réinverse
         // return !!localStorage.getItem('token');
 
-        if (localStorage.getItem('token')) {
-            return true;
-        } else {
-            return false;
-        }
+        return store.state.isUserConnected;
     },
     // on déconnecte l'utilisateur
     disconnectUser() {
@@ -61,7 +57,6 @@ export default {
         localStorage.removeItem('token');
 
         // on prévient le reste de l'application du changement de statut
-        const userStatusChangedEvent = new Event('userStatusChanged');
-        document.dispatchEvent(userStatusChangedEvent);
+        store.commit('updateConnectionStatus', false);
     }
 }

@@ -12,31 +12,20 @@
     // on importe le composant Footer.vue dans une variable Footer
     import Footer from './components/Footer.vue';
     import Header from './components/Header.vue';
-    import userService from './services/userService';
 
     export default {
-        data() {
-            return {
-                isUserLoggedIn: false
-            };
-        },
         // on déclare les composants externes qui seront utilisés dans le composant courant
         components: {
             Footer,
             Header,
         },
-        methods: {
-            checkUserStatus() {
-                // on modifie la valeur de la data isUserLoggedIn avec la valeur de userService.isUserConnected()
-                this.isUserLoggedIn = userService.isUserConnected();
+        computed: {
+            isUserLoggedIn () {
+                return this.$store.state.isUserConnected;
             }
         },
-        // lorsque le composant est ajouté au DOM, mounted() est automatiquement exécutée
         mounted() {
-            this.checkUserStatus();
-            document.addEventListener('userStatusChanged', () => {
-                this.checkUserStatus();
-            });
+            this.$store.commit('updateConnectionStatus');
         }
     };
 </script>
