@@ -1,0 +1,1 @@
+export const baseUrl = "http://localhost/Boson/prepa/wp-oCooking-backend-full/wp-json";

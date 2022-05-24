@@ -15,7 +15,7 @@
                 <a :class="{active: currentPage === page}" @click.prevent="loadPage(page)" :key="page" v-for="page in pageNumber" href="javascript:void(0)">{{ page }}</a>
             </div>
 
-            <RecipeExcerpt v-for="recipe in recipeList" :key="recipe.id" :recipeData="recipe"></RecipeExcerpt>
+            <RecipeExcerpt @click="onRecipeClick(recipe.id)" v-for="recipe in recipeList" :key="recipe.id" :recipeData="recipe"></RecipeExcerpt>
         </div>
 </template>
 
@@ -62,6 +62,17 @@ export default {
         loadRecipeTypes: function() {
             recipeTypeService.getRecipeTypes().then(response => {
                 this.recipeTypeList = response.data;
+            });
+        },
+        // au clic sur une recette
+        onRecipeClick(recipeId) {
+            // on déclenche la navigation vers la route /recipe/{id}
+            // en passant recipeId
+            this.$router.push({ 
+                name: 'recipe',
+                params: {
+                    recipeId: recipeId
+                }
             });
         }
     }

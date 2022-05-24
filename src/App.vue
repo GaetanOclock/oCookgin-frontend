@@ -12,8 +12,7 @@
     // on importe le composant Footer.vue dans une variable Footer
     import Footer from './components/Footer.vue';
     import Header from './components/Header.vue';
-    import HomeView from './views/HomeView.vue';
-    import NotFound from './components/NotFound.vue';
+    import userService from './services/userService';
 
     export default {
         data() {
@@ -25,8 +24,19 @@
         components: {
             Footer,
             Header,
-            HomeView,
-            NotFound
+        },
+        methods: {
+            checkUserStatus() {
+                // on modifie la valeur de la data isUserLoggedIn avec la valeur de userService.isUserConnected()
+                this.isUserLoggedIn = userService.isUserConnected();
+            }
+        },
+        // lorsque le composant est ajouté au DOM, mounted() est automatiquement exécutée
+        mounted() {
+            this.checkUserStatus();
+            document.addEventListener('userStatusChanged', () => {
+                this.checkUserStatus();
+            });
         }
     };
 </script>

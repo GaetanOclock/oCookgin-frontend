@@ -16,13 +16,15 @@
             <img class="avatar" src="../assets/images/avatar.png" />
             <div class="user-actions">
             <!-- <a href="javascript:void(0)">Inviter un ami</a> -->
-            <a href="javascript:void(0)">Déconnexion</a>
+            <a href="javascript:void(0)" @click="onDisconnectClick">Déconnexion</a>
             </div>
         </div>
     </header>
 </template>
 
 <script>
+
+import userService from '../services/userService';
 export default {
     // à la clé data de cet objet, on peut déclarer des "variables" à utiliser dans le composant
     data() {
@@ -31,7 +33,12 @@ export default {
         };
     },
     // on déclare les props utilisables sur ce composant => on définit quels attributs on pourra utiliser pour passer de la donnée ici depuis le parent
-    props: ["isUserConnected"]
+    props: ["isUserConnected"],
+    methods: {
+        onDisconnectClick() {
+            userService.disconnectUser();
+        }
+    }
 }
 </script>
 
